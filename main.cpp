@@ -52,7 +52,9 @@ int main()
     sf::RectangleShape paddle_left(sf::Vector2f(paddle_width, paddle_height));
     sf::RectangleShape paddle_right(sf::Vector2f(paddle_width, paddle_height));
     paddle_left.setPosition(0.0f, (window_height - paddle_height) / 2.0f);
+    paddle_left.setFillColor(sf::Color::Red);
     paddle_right.setPosition(window_width - paddle_width, (window_height - paddle_height) / 2.0f);
+    paddle_right.setFillColor(sf::Color::Blue);
 
 
 
@@ -62,6 +64,7 @@ int main()
     ball.setPosition((window_width - ball_size) / 2.0f, (window_height - ball_size) / 2.0f);
     float ball_speed_x = 7.f;
     float ball_speed_y = 7.f;
+    ball.setFillColor(sf::Color::Yellow);
 
     // Set up the score
     int score_left = 0;
@@ -132,13 +135,13 @@ int main()
             // Check if the ball collides with the paddles and change its horizontal direction if it does
             if (ball.getGlobalBounds().intersects(paddle_left.getGlobalBounds()))
             {
-                ball_speed_x -= 1.f;
+                ball_speed_x -= 0.8f;
                 hitSound.play();
                 ball_speed_x = -ball_speed_x;
             }
             if(ball.getGlobalBounds().intersects(paddle_right.getGlobalBounds()))
             {
-                ball_speed_x += 1.f;
+                ball_speed_x += 0.8f;
                 hitSound.play();
                 ball_speed_x = -ball_speed_x;
             }
@@ -198,9 +201,6 @@ int main()
         {
             window.draw(pressP);
         }
-
-
-
         // Display the window
         window.display();
     }
