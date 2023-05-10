@@ -1,5 +1,6 @@
-/*Developed by M.Abdullah on April 6,2023
-Copyright belongs to M.Abdullah
+/*Developed by M.Abdullah
+ and on April 6,2023
+Copyright belongs to M.Abdullah and Moosa Hassan
 This project is for presentation only.
 This project is not for sale or any other commercial use.
 */
@@ -12,6 +13,7 @@ int main()
     int window_width = 1180;
     int window_height = 720;
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), "SFML Ping Pong Game");
+    window.setFramerateLimit(90);
     sf::SoundBuffer hitbuffer;
     if (!hitbuffer.loadFromFile("F:/CLionProjects/PingPongGameSFML/hit.wav"))
         return -1;
@@ -46,7 +48,7 @@ int main()
     // Set up the paddles
     float paddle_width = 15.0f;
     float paddle_height = 150.0f;
-    float paddle_speed = 1.5f;
+    float paddle_speed = 10.5f;
     sf::RectangleShape paddle_left(sf::Vector2f(paddle_width, paddle_height));
     sf::RectangleShape paddle_right(sf::Vector2f(paddle_width, paddle_height));
     paddle_left.setPosition(0.0f, (window_height - paddle_height) / 2.0f);
@@ -58,8 +60,8 @@ int main()
     float ball_size = 10.0f;
     sf::CircleShape ball(ball_size);
     ball.setPosition((window_width - ball_size) / 2.0f, (window_height - ball_size) / 2.0f);
-    float ball_speed_x = 1.2f;
-    float ball_speed_y = 1.2f;
+    float ball_speed_x = 7.f;
+    float ball_speed_y = 7.f;
 
     // Set up the score
     int score_left = 0;
@@ -95,8 +97,6 @@ int main()
             gameStarted = true;
         }
         if(gameStarted == true) {
-            pressP.setString("");
-            pressEsc.setString("");
             {
                 if (event.type == sf::Event::Closed) {
                     window.close();
@@ -132,27 +132,27 @@ int main()
             // Check if the ball collides with the paddles and change its horizontal direction if it does
             if (ball.getGlobalBounds().intersects(paddle_left.getGlobalBounds()))
             {
-                ball_speed_x -= 0.1f;
+                ball_speed_x -= 1.f;
                 hitSound.play();
                 ball_speed_x = -ball_speed_x;
             }
             if(ball.getGlobalBounds().intersects(paddle_right.getGlobalBounds()))
             {
-                ball_speed_x += 0.1f;
+                ball_speed_x += 1.f;
                 hitSound.play();
                 ball_speed_x = -ball_speed_x;
             }
 
             // Check if the ball goes out of bounds on the left or right and update the score
             if (ball.getPosition().x < 0.0f) {
-                ball_speed_x = 1.2f;
+                ball_speed_x = 7.f;
                 missSound.play();
                 score_right++;
                 ball.setPosition((window_width - ball_size) / 2.0f, (window_height - ball_size) / 2.0f);
                 ball_speed_x = -ball_speed_x;
             }
             if (ball.getPosition().x + ball_size > window_width) {
-                ball_speed_x = 1.2f;
+                ball_speed_x = 7.f;
                 missSound.play();
                 score_left++;
                 ball.setPosition((window_width - ball_size) / 2.0f, (window_height - ball_size) / 2.0f);
@@ -198,6 +198,9 @@ int main()
         {
             window.draw(pressP);
         }
+
+
+
         // Display the window
         window.display();
     }
