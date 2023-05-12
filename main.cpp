@@ -1,6 +1,6 @@
 /*Developed by M.Abdullah
  and on April 6,2023
-Copyright belongs to M.Abdullah and Moosa Hassan
+Copyright belongs to M.Abdullah
 This project is for presentation only.
 This project is not for sale or any other commercial use.
 */
