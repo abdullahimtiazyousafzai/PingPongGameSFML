@@ -1,8 +1,8 @@
 /*Developed by M.Abdullah
  and on April 6,2023
 Copyright belongs to M.Abdullah
-This project is for presentation only.
-This project is not for sale or any other commercial use.
+This project is for presentation only
+This project is not for sale or any other commercial use
 */
 #include <SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
@@ -13,7 +13,7 @@ int main()
     int window_width = 1180;
     int window_height = 720;
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), "SFML Ping Pong Game");
-    window.setFramerateLimit(90);
+    window.setFramerateLimit(120);
     sf::SoundBuffer hitbuffer;
     if (!hitbuffer.loadFromFile("F:/CLionProjects/PingPongGameSFML/hit.wav"))
         return -1;
@@ -35,12 +35,12 @@ int main()
         return -1;
     }
 
-    sf::Text pressP;
-    pressP.setFont(font);
-    pressP.setString("Press P to Play the game!");
-    pressP.setCharacterSize(30);
-    pressP.setPosition(400.f, 300.0f);
-    pressP.setFillColor(sf::Color::White);
+    sf::Text pressSpace;
+    pressSpace.setFont(font);
+    pressSpace.setString("Press Space to Play the game!");
+    pressSpace.setCharacterSize(30);
+    pressSpace.setPosition(400.f, 300.0f);
+    pressSpace.setFillColor(sf::Color::White);
 
     bool gameStarted = false;
 
@@ -48,7 +48,7 @@ int main()
     // Set up the paddles
     float paddle_width = 15.0f;
     float paddle_height = 150.0f;
-    float paddle_speed = 10.5f;
+    float paddle_speed = 7.5f;
     sf::RectangleShape paddle_left(sf::Vector2f(paddle_width, paddle_height));
     sf::RectangleShape paddle_right(sf::Vector2f(paddle_width, paddle_height));
     paddle_left.setPosition(0.0f, (window_height - paddle_height) / 2.0f);
@@ -62,8 +62,8 @@ int main()
     float ball_size = 10.0f;
     sf::CircleShape ball(ball_size);
     ball.setPosition((window_width - ball_size) / 2.0f, (window_height - ball_size) / 2.0f);
-    float ball_speed_x = 7.f;
-    float ball_speed_y = 7.f;
+    float ball_speed_x = 5.f;
+    float ball_speed_y = 5.f;
     ball.setFillColor(sf::Color::Yellow);
 
     // Set up the score
@@ -95,7 +95,7 @@ int main()
                 window.close();
             }
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             gameStarted = true;
         }
@@ -199,7 +199,7 @@ int main()
         window.draw(pressEsc);
         if(gameStarted == false)
         {
-            window.draw(pressP);
+            window.draw(pressSpace);
         }
         // Display the window
         window.display();
